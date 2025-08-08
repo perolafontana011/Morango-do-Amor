@@ -18,6 +18,7 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to bottom, var(--rosa-claro), var(--branco));
       color: var(--chocolate);
+      scroll-behavior: smooth;
     }
 
     header {
@@ -25,6 +26,7 @@
       color: var(--branco);
       text-align: center;
       padding: 40px 20px;
+      animation: fadeIn 1s ease-in;
     }
 
     header h1 {
@@ -33,9 +35,10 @@
     }
 
     section {
-      padding: 30px 20px;
-      max-width: 900px;
+      padding: 40px 20px;
+      max-width: 1000px;
       margin: auto;
+      animation: fadeInUp 1s ease-in;
     }
 
     h2 {
@@ -75,6 +78,7 @@
       gap: 15px;
       flex-wrap: wrap;
       margin-top: 20px;
+      justify-content: center;
     }
 
     .galeria img {
@@ -82,6 +86,49 @@
       max-width: 250px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .sabores, .pacotes, .depoimentos, .pedido, .newsletter {
+      margin-top: 50px;
+    }
+
+    .sabores ul li::before {
+      content: "🧁 ";
+    }
+
+    .pacotes table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .pacotes th, .pacotes td {
+      border: 1px solid var(--rosa);
+      padding: 10px;
+      text-align: left;
+    }
+
+    .depoimentos blockquote {
+      background-color: var(--rosa-claro);
+      border-left: 5px solid var(--vermelho);
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid var(--rosa);
+      border-radius: 6px;
+      font-size: 1em;
     }
 
     .redes {
@@ -114,6 +161,16 @@
       font-size: 0.9em;
     }
 
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2.2em;
@@ -135,42 +192,66 @@
     <p>Uma explosão de sabor e sentimento</p>
   </header>
 
-  <section>
-    <h2>Experimente agora!</h2>
-    <p>Quer provar essa delícia? Clique no botão abaixo:</p>
-    <button class="botao" onclick="adicionarAoCarrinho()">Quero um! 🍓</button>
-    <p id="carrinhoMsg" style="margin-top:10px; font-weight:bold;"></p>
+  <section class="sabores">
+    <h2>Sabores Especiais</h2>
+    <ul>
+      <li>Chocolate ao leite com confeitos</li>
+      <li>Branco com coco ralado</li>
+      <li>Meio amargo com pimenta rosa</li>
+      <li>Recheado com doce de leite</li>
+    </ul>
   </section>
 
-  <section>
+  <section class="pacotes">
+    <h2>Pacotes e Preços</h2>
+    <table>
+      <tr><th>Pacote</th><th>Quantidade</th><th>Preço</th></tr>
+      <tr><td>Romântico</td><td>6 unidades</td><td>R$ 25,00</td></tr>
+      <tr><td>Paixão</td><td>12 unidades</td><td>R$ 45,00</td></tr>
+      <tr><td>Amor Supremo</td><td>24 unidades</td><td>R$ 80,00</td></tr>
+    </table>
+  </section>
+
+  <section class="depoimentos">
+    <h2>O que dizem nossos clientes</h2>
+    <blockquote>“Nunca comi algo tão delicioso e bonito! Perfeito para presentear.” — Ana Clara</blockquote>
+    <blockquote>“O sabor é incrível e o atendimento foi impecável. Recomendo demais!” — João Pedro</blockquote>
+  </section>
+
+  <section class="galeria">
     <h2>Galeria de Morangos</h2>
-    <div class="galeria">
-      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Morango com chocolate">
-      <img src="https://images.unsplash.com/photo-1612197529930-3c8c6e2c3f8d" alt="Morango decorado">
-      <img src="https://images.unsplash.com/photo-1584270354949-1f7c1c6f6e3e" alt="Morango gourmet">
-    </div>
+    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Morango com chocolate">
+    <img src="https://images.unsplash.com/photo-1612197529930-3c8c6e2c3f8d" alt="Morango decorado">
+    <img src="https://images.unsplash.com/photo-1584270354949-1f7c1c6f6e3e" alt="Morango gourmet">
   </section>
 
-  <section>
-    <h2>Compartilhe o amor</h2>
-    <div class="redes">
-      <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/" target="_blank">Facebook</a>
-      <a href="https://wa.me/" target="_blank">WhatsApp</a>
-    </div>
+  <section class="pedido">
+    <h2>Faça seu pedido</h2>
+    <form>
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <textarea rows="4" placeholder="Mensagem ou pedido personalizado"></textarea>
+      <button class="botao" type="submit">Enviar pedido</button>
+    </form>
+  </section>
+
+  <section class="newsletter">
+    <h2>Receba novidades</h2>
+    <form>
+      <input type="email" placeholder="Digite seu e-mail">
+      <button class="botao" type="submit">Assinar</button>
+    </form>
+  </section>
+
+  <section class="redes">
+    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+    <a href="https://wa.me/" target="_blank">WhatsApp</a>
   </section>
 
   <footer>
     &copy; 2025 Morango do Amor — Feito com carinho por Pérola 🍓
   </footer>
-
-  <script>
-    let carrinho = 0;
-    function adicionarAoCarrinho() {
-      carrinho++;
-      document.getElementById("carrinhoMsg").textContent = `Você adicionou ${carrinho} Morango(s) do Amor ao carrinho! ❤️`;
-    }
-  </script>
 
 </body>
 </html>
